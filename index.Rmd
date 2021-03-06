@@ -1,0 +1,41 @@
+---
+title: "Desfiltro"
+author: "Francisko de Moraes Rezende"
+date: "3/6/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Carregando os pacotes
+
+```{r}
+library(dplyr)
+library(tibble)
+```
+
+Só pra constar, esses dois pacotes são carregados se você usar `library(tidyverse)`.
+Se você prefere usar o tidyverse manda brasa.
+
+## Carregando os dados
+
+Vou usar o dataset `mtcars` pra esse exemplo, se liga nos dados:
+
+
+```{r}
+mtcars
+```
+
+Como eu quero usar os modelos de carro e eles estão codados como nome de linha eu
+vou convertê-los em uma variável:
+
+```{r}
+(mtcars %>% 
+  tibble::rownames_to_column(var = "model") %>% 
+  tibble::as_tibble() -> dat)
+```
+
+Show de 
+
