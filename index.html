@@ -171,6 +171,7 @@ pre code {
 </div>
 
 
+<p>O arquivo .Rmd usado pra gerar esse site/documento tá aqui ó: <a href="https://github.com/francisko-rezende/desfiltro-ze" class="uri">https://github.com/francisko-rezende/desfiltro-ze</a></p>
 <div id="carregando-os-pacotes" class="section level2">
 <h2>Carregando os pacotes</h2>
 <pre class="r"><code>library(dplyr)</code></pre>
@@ -240,6 +241,38 @@ pre code {
 ##  9 Merc 230     22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
 ## 10 Merc 280     19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
 ## # … with 22 more rows</code></pre>
+<p>Show de ⚽!</p>
+</div>
+<div id="desfiltrando-usando-várias-condições-quirido" class="section level2">
+<h2>Desfiltrando usando várias condições, quirido!</h2>
+<p>Tá, então bora pro <code>filter</code>. A primeira coisa que temos que vou fazer é escolher uns carros pra tirar do dataset:</p>
+<pre class="r"><code>nao_quero &lt;-
+  dat$model[c(1, 2)]</code></pre>
+<p>Vou tirar o primeiro e o segundo carro pra ficar fácil de visualizar a diferença, ou sejE, vou tirar esses carros aqui: Mazda RX4, Mazda RX4 Wag.</p>
+<p>O código a seguir remove esses carros do dataset:</p>
+<pre class="r"><code>dat %&gt;% 
+  dplyr::filter(
+    !(model %in% nao_quero)  
+  ) -&gt; filtered_dat</code></pre>
+<p>Se liga só, deu certo:</p>
+<pre class="r"><code>filtered_dat</code></pre>
+<pre><code>## # A tibble: 30 x 12
+##    model         mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 Datsun 710   22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
+##  2 Hornet 4 D…  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
+##  3 Hornet Spo…  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+##  4 Valiant      18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
+##  5 Duster 360   14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+##  6 Merc 240D    24.4     4  147.    62  3.69  3.19  20       1     0     4     2
+##  7 Merc 230     22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
+##  8 Merc 280     19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
+##  9 Merc 280C    17.8     6  168.   123  3.92  3.44  18.9     1     0     4     4
+## 10 Merc 450SE   16.4     8  276.   180  3.07  4.07  17.4     0     0     3     3
+## # … with 20 more rows</code></pre>
+<p>Quando você quiser filtrar se baseando em mais de um elemento, você usa esse <code>%in%</code>. Pra excluir observações/inverter o <code>filter</code>, você bota a sua condição entre parenteses e adiciona ! antes dela.</p>
+<p>No mais é isso, Zéduar! Fiz esse trem meio tirado do subaco, antes de ver seus dados, mas pelo que você disse era isso que você queria. Se eu tiver entendido errado é só dar um toque!</p>
+<p>Vlw flw!</p>
 </div>
 
 

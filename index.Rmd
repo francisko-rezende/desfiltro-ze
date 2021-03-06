@@ -9,6 +9,8 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+O arquivo .Rmd usado pra gerar esse site/documento tá aqui ó: https://github.com/francisko-rezende/desfiltro-ze
+
 ## Carregando os pacotes
 
 ```{r}
@@ -37,5 +39,39 @@ vou convertê-los em uma variável:
   tibble::as_tibble() -> dat)
 ```
 
-Show de 
+Show de `r emo::ji("soccer")`!
 
+## Desfiltrando usando várias condições, quirido!
+
+Tá, então bora pro `filter`.
+A primeira coisa que temos que vou fazer é escolher uns carros pra tirar do dataset:
+
+```{r}
+nao_quero <-
+  dat$model[c(1, 2)]
+```
+
+Vou tirar o primeiro e o segundo carro pra ficar fácil de visualizar a diferença, ou sejE, vou tirar esses carros aqui: `r nao_quero`.
+
+O código a seguir remove esses carros do dataset:
+
+```{r}
+dat %>% 
+  dplyr::filter(
+    !(model %in% nao_quero)  
+  ) -> filtered_dat
+```
+
+Se liga só, deu certo:
+
+```{r}
+filtered_dat
+```
+
+Quando você quiser filtrar se baseando em mais de um elemento, você usa
+esse `%in%`. Pra excluir observações/inverter o `filter`, você bota a sua
+condição entre parenteses e adiciona ! antes dela.
+
+No mais é isso, Zéduar! Fiz esse trem meio tirado do subaco, antes de ver seus dados, mas pelo que você disse era isso que você queria. Se eu tiver entendido errado é só dar um toque!
+
+Vlw flw!
